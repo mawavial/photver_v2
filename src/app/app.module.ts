@@ -16,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
 import { Camera } from '@ionic-native/camera';
 import { HttpClientModule } from '@angular/common/http';
+// import { RestProvider } from '../providers/rest/rest';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiProvider,
     Camera,
-    ApiProvider
+    // RestProvider
     //{ provide: Camera, useClass: CameraMock} //if running on browser
   ]
 })

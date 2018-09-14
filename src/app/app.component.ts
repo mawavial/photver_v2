@@ -1,23 +1,53 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+
+import { Platform, MenuController, Nav } from 'ionic-angular';
+
+import { CameraPage} from '../pages/camera/camera';
+import { HomePage } from '../pages/home/home';
+
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-// import { TabsPage } from '../pages/tabs/tabs';
-import { CameraPage} from '../pages/camera/camera';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = CameraPage;
+  @ViewChild(Nav) nav: Nav;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
+  // hard load on the way!
+  rootPage = HomePage;
+  pages: Array<{title: string, component: any}>;
+
+  constructor(
+    public platform: Platform,
+    public menu: MenuController,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen
+  ) {
+    this.initializeApp();
+
+    // set our app's pages
+    this.pages = [
+      { title: 'Home', component: HomePage },
+      { title: 'Camera', component: CameraPage },
+    ];
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
+  }
+
+  openPage(page) {
+    // close the menu when clicking a link from the menu
+    this.menu.close();
+    // navigate to the new page if it is not the current page
+    this.nav.setRoot(page.component);
   }
 }

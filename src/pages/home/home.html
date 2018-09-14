@@ -9,12 +9,57 @@
 
 
 <ion-content padding>
-  <ion-list>
-  <button ion-item *ngFor="let album of albums | async">
-    {{album.title}}
-    <ion-img scr={{album.url}}></ion-img>
-  </button>
-  
-</ion-list>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()">
+  </ion-searchbar>
+
+  <ion-card *ngFor="let album of albums | async">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="{{album.thumbnailUrl}}" />
+      </ion-avatar>
+      <h2>Card title</h2>
+    </ion-item>
+
+    <img src="{{album.url}}" />
+
+    <ion-card-content>
+      <p>{{album.title}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12 Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="chatboxes"></ion-icon>
+          <div>Comment</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          11h ago
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
 
 </ion-content>
+
+
+<!-- <ion-list>
+  <ion-card *ngFor="let album of albums | async">
+    <img src="{{album.url}}" />
+    <ion-card-content>
+      <ion-card-header>{{album.title}}</ion-card-header>
+    </ion-card-content>
+
+  </ion-card>
+</ion-list> -->

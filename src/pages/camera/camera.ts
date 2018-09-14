@@ -5,8 +5,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import {Platform} from 'ionic-angular';
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-camera',
+  templateUrl: 'camera.html'
 })
 export class CameraPage {
 
@@ -28,7 +28,9 @@ export class CameraPage {
                   sourceType:sourceType,
                   destinationType: this.camera.DestinationType.DATA_URL,
                   saveToPhotoAlbum: true,
-                  mediaType: this.camera.MediaType.PICTURE
+                  mediaType: this.camera.MediaType.PICTURE,
+                  targetWidth: 200,
+                  targetHeight: 200
                 }
 
                 this.camera.getPicture(options).then((imageData) => {

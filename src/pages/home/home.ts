@@ -1,21 +1,24 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading} from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { ApiProvider } from './../../providers/api/api';
 
+
 // @IonicPage()
 @Component({
-  selector: 'page-photoalbum',
-  templateUrl: 'photoalbum.html',
+  selector: 'page-home',
+  templateUrl: 'home.html',
 })
 export class HomePage {
+  // public loading = Loading.create();
   albums: Observable<any>;
 
   constructor(public navCtrl: NavController, public apiProvider: ApiProvider) {
+    // this.navCtrl.present(this.loading);
     this.albums = this.apiProvider.getData();
     console.log('All data: ', this.albums);
-    console.log('Length: ', this.albums.length);
+    // console.log('Length: ', this.albums.length);
   }//end of constructor
 
   // constructor(public navCtrl: NavController, public httpClient: HttpClient) {
@@ -30,7 +33,7 @@ export class HomePage {
 // }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PhotoalbumPage');
+    console.log('ionViewDidLoad HomePage');
   }
 
 }//endof constructor
