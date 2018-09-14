@@ -13,7 +13,7 @@
   <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()">
   </ion-searchbar>
 
-  <ion-card *ngFor="let album of albums | async">
+  <ion-card *ngFor="let album of albums | async; ">
 
     <ion-item>
       <ion-avatar item-start>
@@ -22,17 +22,17 @@
       <h2>Card title</h2>
     </ion-item>
 
-    <img src="{{album.url}}" />
+    <img height="150" src="{{album.url}}" />
 
     <ion-card-content>
       <p>{{album.title}}</p>
     </ion-card-content>
-
+    <!-- <div hdiv></div> -->
     <ion-row>
       <ion-col>
         <button ion-button icon-start clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>12 Likes</div>
+          <div> Like</div>
         </button>
       </ion-col>
       <ion-col>
@@ -41,10 +41,11 @@
           <div>Comment</div>
         </button>
       </ion-col>
+      <!-- <ion-col center text-center> -->
       <ion-col center text-center>
-        <ion-note>
-          11h ago
-        </ion-note>
+        <!-- <ion-note> -->
+          <div>1min ago</div>
+        <!-- </ion-note> -->
       </ion-col>
     </ion-row>
 

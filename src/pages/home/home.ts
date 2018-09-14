@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Loading} from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { ApiProvider } from './../../providers/api/api';
+import { Photos } from './../../providers/api/api';
 
 
 // @IonicPage()
@@ -11,26 +12,20 @@ import { ApiProvider } from './../../providers/api/api';
   templateUrl: 'home.html',
 })
 export class HomePage {
-  // public loading = Loading.create();
-  albums: Observable<any>;
+
+  // private albums: Photos[] = [];
+    albums: Observable<any>;
 
   constructor(public navCtrl: NavController, public apiProvider: ApiProvider) {
-    // this.navCtrl.present(this.loading);
+    // this.albums = this.apiProvider.getData().subscribe(data => {console.log(data);
     this.albums = this.apiProvider.getData();
-    console.log('All data: ', this.albums);
-    // console.log('Length: ', this.albums.length);
   }//end of constructor
 
-  // constructor(public navCtrl: NavController, public httpClient: HttpClient) {
-  //   this.films = this.httpClient.get('https://swapi.co/api/films');
-  //   this.films
-  //   .subscribe(data => {
-  //     console.log('my data: ', data);
-  //   })
+   randLike(){
+     return Math.floor((Math.random() * 73) + 1);
+   }//endof randlike
 
-//   openDetails(film) {
-//   this.navCtrl.push('FilmDetailsPage', {film: film});
-// }
+ // getAlbums(){this.apiProvider.getAlbumById(1).subscribe((albums: Photos[])=>{this.albums = albums;});}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
